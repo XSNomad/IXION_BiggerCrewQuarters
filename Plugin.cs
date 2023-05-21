@@ -2,7 +2,6 @@
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using BulwarkStudios.Stanford.Torus.Buildings.Actions;
-using BepInEx.Logging;
 
 namespace BiggerCrewQuarters;
 
@@ -29,7 +28,7 @@ public class MoreCitizens
     {
         public static void Postfix(ref int __result)
         {
-            __result *= 2;
+            if (__result==40 || __result==70) __result *= 2;
         }
     }
     [HarmonyPatch(typeof(BuildingActionBehaviourHouse), nameof(BuildingActionBehaviourHouse.GetMaxCitizen))]
@@ -37,7 +36,7 @@ public class MoreCitizens
     {
         public static void Postfix(ref int __result)
         {
-            __result *= 2;
+            if (__result == 15) __result *= 2;
         }
     }
     [HarmonyPatch(typeof(BuildingActionBehaviourCellHousing), nameof(BuildingActionBehaviourCellHousing.GetMaxCitizen))]
@@ -45,7 +44,7 @@ public class MoreCitizens
     {
         public static void Postfix(ref int __result)
         {
-            __result *= 2;
+            if (__result == 125) __result *= 2;
         }
     }
 }
